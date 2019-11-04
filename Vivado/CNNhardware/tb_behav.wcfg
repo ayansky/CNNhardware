@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1914166666fs"></ZoomStartTime>
+      <ZoomEndTime time="2017166667fs"></ZoomEndTime>
+      <Cursor1Time time="1956000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="140"></NameColumnWidth>
+      <ValueColumnWidth column_width="297"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="65" />
+   <wvobject fp_name="/tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/ram1" type="array">
+      <obj_property name="ElementShortName">ram1[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram1[799:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/ram2" type="array">
+      <obj_property name="ElementShortName">ram2[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram2[799:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/ram3" type="array">
+      <obj_property name="ElementShortName">ram3[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram3[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/FL" type="array">
+      <obj_property name="ElementShortName">FL[71:0]</obj_property>
+      <obj_property name="ObjectShortName">FL[71:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/wr_en" type="array">
+      <obj_property name="ElementShortName">wr_en[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_en[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/k" type="array">
+      <obj_property name="ElementShortName">k[1:0]</obj_property>
+      <obj_property name="ObjectShortName">k[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/regOut" type="array">
+      <obj_property name="ElementShortName">regOut[1567:0]</obj_property>
+      <obj_property name="ObjectShortName">regOut[1567:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/output_valid" type="logic">
+      <obj_property name="ElementShortName">output_valid</obj_property>
+      <obj_property name="ObjectShortName">output_valid</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider11">
+      <obj_property name="label">conv</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/ram1" type="array">
+      <obj_property name="ElementShortName">ram1[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram1[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/ram2" type="array">
+      <obj_property name="ElementShortName">ram2[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram2[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/ram3" type="array">
+      <obj_property name="ElementShortName">ram3[799:0]</obj_property>
+      <obj_property name="ObjectShortName">ram3[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/FL" type="array">
+      <obj_property name="ElementShortName">FL[71:0]</obj_property>
+      <obj_property name="ObjectShortName">FL[71:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/wr_en" type="array">
+      <obj_property name="ElementShortName">wr_en[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_en[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/k" type="array">
+      <obj_property name="ElementShortName">k[1:0]</obj_property>
+      <obj_property name="ObjectShortName">k[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/regOut" type="array">
+      <obj_property name="ElementShortName">regOut[1567:0]</obj_property>
+      <obj_property name="ObjectShortName">regOut[1567:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/output_valid" type="logic">
+      <obj_property name="ElementShortName">output_valid</obj_property>
+      <obj_property name="ObjectShortName">output_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/data_valid1" type="logic">
+      <obj_property name="ElementShortName">data_valid1</obj_property>
+      <obj_property name="ObjectShortName">data_valid1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/data_valid2" type="logic">
+      <obj_property name="ElementShortName">data_valid2</obj_property>
+      <obj_property name="ObjectShortName">data_valid2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/data_valid3" type="logic">
+      <obj_property name="ElementShortName">data_valid3</obj_property>
+      <obj_property name="ObjectShortName">data_valid3</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/data_valid" type="logic">
+      <obj_property name="ElementShortName">data_valid</obj_property>
+      <obj_property name="ObjectShortName">data_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rd_en" type="logic">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rd_addr" type="array">
+      <obj_property name="ElementShortName">rd_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_addr[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rd_data1" type="array">
+      <obj_property name="ElementShortName">rd_data1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_data1[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rd_data2" type="array">
+      <obj_property name="ElementShortName">rd_data2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_data2[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/rd_data3" type="array">
+      <obj_property name="ElementShortName">rd_data3[23:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_data3[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider31">
+      <obj_property name="label">l</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/wr_en" type="logic">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/wr_data" type="array">
+      <obj_property name="ElementShortName">wr_data[799:0]</obj_property>
+      <obj_property name="ObjectShortName">wr_data[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/rd_addr" type="array">
+      <obj_property name="ElementShortName">rd_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/rd_en" type="logic">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/rd_data" type="array">
+      <obj_property name="ElementShortName">rd_data[23:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_data[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/data_valid" type="logic">
+      <obj_property name="ElementShortName">data_valid</obj_property>
+      <obj_property name="ObjectShortName">data_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/data" type="array">
+      <obj_property name="ElementShortName">data[799:0]</obj_property>
+      <obj_property name="ObjectShortName">data[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/IDLE" type="array">
+      <obj_property name="ElementShortName">IDLE[1:0]</obj_property>
+      <obj_property name="ObjectShortName">IDLE[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/READ" type="array">
+      <obj_property name="ElementShortName">READ[1:0]</obj_property>
+      <obj_property name="ObjectShortName">READ[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB1/WRITE" type="array">
+      <obj_property name="ElementShortName">WRITE[1:0]</obj_property>
+      <obj_property name="ObjectShortName">WRITE[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider45">
+      <obj_property name="label">control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/data_valid" type="logic">
+      <obj_property name="ElementShortName">data_valid</obj_property>
+      <obj_property name="ObjectShortName">data_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/LB1" type="array">
+      <obj_property name="ElementShortName">LB1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">LB1[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/LB2" type="array">
+      <obj_property name="ElementShortName">LB2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">LB2[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/LB3" type="array">
+      <obj_property name="ElementShortName">LB3[23:0]</obj_property>
+      <obj_property name="ObjectShortName">LB3[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/FL" type="array">
+      <obj_property name="ElementShortName">FL[71:0]</obj_property>
+      <obj_property name="ObjectShortName">FL[71:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/rd_en" type="logic">
+      <obj_property name="ElementShortName">rd_en</obj_property>
+      <obj_property name="ObjectShortName">rd_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/rd_addr" type="array">
+      <obj_property name="ElementShortName">rd_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_addr[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/k" type="array">
+      <obj_property name="ElementShortName">k[1:0]</obj_property>
+      <obj_property name="ObjectShortName">k[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/regOut" type="array">
+      <obj_property name="ElementShortName">regOut[1567:0]</obj_property>
+      <obj_property name="ObjectShortName">regOut[1567:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/output_valid" type="logic">
+      <obj_property name="ElementShortName">output_valid</obj_property>
+      <obj_property name="ObjectShortName">output_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/regA" type="array">
+      <obj_property name="ElementShortName">regA[23:0]</obj_property>
+      <obj_property name="ObjectShortName">regA[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/regB" type="array">
+      <obj_property name="ElementShortName">regB[23:0]</obj_property>
+      <obj_property name="ObjectShortName">regB[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/regC" type="array">
+      <obj_property name="ElementShortName">regC[23:0]</obj_property>
+      <obj_property name="ObjectShortName">regC[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/IDLE" type="array">
+      <obj_property name="ElementShortName">IDLE[1:0]</obj_property>
+      <obj_property name="ObjectShortName">IDLE[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/READ" type="array">
+      <obj_property name="ElementShortName">READ[1:0]</obj_property>
+      <obj_property name="ObjectShortName">READ[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/WAIT" type="array">
+      <obj_property name="ElementShortName">WAIT[1:0]</obj_property>
+      <obj_property name="ObjectShortName">WAIT[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/conv1/LB_control/MAC" type="array">
+      <obj_property name="ElementShortName">MAC[1:0]</obj_property>
+      <obj_property name="ObjectShortName">MAC[1:0]</obj_property>
+   </wvobject>
+</wave_config>

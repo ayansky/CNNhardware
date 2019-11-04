@@ -6,7 +6,7 @@ input wire [799:0] ram2,
 input wire [799:0] ram3,
 input wire [71:0] FL,
 input wire [2:0] wr_en,
-output reg [1:0] k,
+output wire [1:0] k,
 output wire [1567:0] regOut,
 output wire output_valid
 );
@@ -61,7 +61,7 @@ LB LB3(
 LB_cl LB_control(
 .clk(clk),
 .rst(rst),
-.data_valid(),
+.data_valid(data_valid),
 .LB1(rd_data1),
 .LB2(rd_data2),
 .LB3(rd_data3),

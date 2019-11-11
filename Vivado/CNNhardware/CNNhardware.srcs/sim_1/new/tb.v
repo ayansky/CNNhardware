@@ -5,58 +5,162 @@ module tb();
 
 reg clk;
 reg rst;
-reg [799:0] ram1;
-reg [799:0] ram2;
-reg [799:0] ram3;
 reg [71:0] FL;
-reg [2:0] wr_en;
+reg [31:0] data_in;
+reg valid;
+wire [15:0] regOut;
+wire ready;
+wire out_valid;
 
-wire [1:0] k;
-wire [1567:0] regOut;
-wire output_valid;
-
-initial
-begin 
-    clk = 0;
-    forever
-    begin
-        clk = ~clk;
-        #(`Period/2);
-      end
-end
-        
-initial 
-begin 
-ram1 = {{50{8'h1}},{50{8'h0}}};
-ram2 = {{50{8'h1}},{50{8'h0}}};
-ram3 = {{50{8'h1}},{50{8'h0}}};
-FL = {{3{8'h1}},{3{8'h0}},{3{8'h1}}};
-end
-
-
-initial 
-begin 
-@(posedge clk);
-wr_en = 3'b111;
-@(posedge clk);
-wr_en = 0;
-@(posedge clk);
-
-
-end
-
-Conv conv1(
+Conv2D Conv(
 .clk(clk),
 .rst(rst),
-.ram1(ram1),
-.ram2(ram2),
-.ram3(ram3),
-.FL(FL),
-.wr_en(wr_en),
-.k(k),
-.regOut(regOut),
-.output_valid(output_valid)
+.data(data_in),
+.Fl(FL),
+.valid(valid),
+.out_data(regOut),
+.out_valid(out_valid),
+.data_in_en(ready)
 );
 
 
+`define read_fileName "C:\\git\\CNNhardware\\Vivado\\CNNhardware\\lena.bmp"
+ localparam ARRAY_LEN =11078; //500*1024;
+ 
+ reg[7:0] data[0: ARRAY_LEN];
+ integer size, start_pos, width, height, bitcount;
+
+task readBMP;
+     integer fileID;
+ //    integer i;
+     begin
+         fileID = $fopen(`read_fileName, "rb");
+         $display("%d", fileID);
+         if(fileID == 0) begin
+             $display("Error: Please check file path");
+             $finish;
+         end else begin
+             $fread(data, fileID);
+             $fclose(fileID);
+         
+             size = {data[5],data[4],data[3],data[2]};
+             $display("size - %d", size);
+             start_pos = {data[13],data[12],data[11],data[10]};
+             $display("startpos : %d", start_pos);
+             width = {data[21],data[20],data[19],data[18]};
+             height = {data[25],data[24],data[23],data[22]};
+             $display("width - %d; height - %d",width, height );
+         
+             bitcount = {data[29],data[28]};
+         
+             if(bitcount != 8) begin
+                 $display("Error: Please check the image file. It may be corrupted");
+             end
+         
+             if(width%4)begin
+                 $display("width is not suitable");
+                 $finish;
+             end
+ //            for(i = start_pos; i<size;i = i+1)begin
+ //                $display("%h", data[i]);
+ //            end
+        end
+     end
+ endtask
+ // Image read complete
+
+
+integer i, j;
+ localparam RESULT_ARRAY_LEN = 98*98*2+1078;//5000*1024;
+ 
+ reg[7:0] result[0:RESULT_ARRAY_LEN - 1];
+//Image Write Start
+ 
+ `define write_filename "C:\\git\\CNNhardware\\Vivado\\CNNhardware\\Result.bmp"
+ 
+task writeBMP;
+integer fileID, k;
+ begin
+     fileID = $fopen(`write_filename, "wb");
+     
+     for(k = 0; k < start_pos; k = k+1)begin
+         $fwrite(fileID, "%c", data[k]);
+     end
+    
+     
+     for(k = start_pos; k<20286; k = k+1)begin
+         $fwrite(fileID, "%c", result[k-start_pos]);
+     end
+     
+     $fclose(fileID);
+     $display("Result.bmp is generated \n");
+ end
+endtask
+ 
+ //Image Write ends
+
+
+always @(posedge clk) begin
+    if(rst) begin
+        j<=8'b0;
+    end else begin
+        if(out_valid) begin
+            result[j] <= regOut[15:8];
+            result[j+1] <= regOut[7:0];
+            j<=j+2; end
+    end
+end
+
+
+always @(posedge clk) begin
+    if(rst) begin
+        i<=start_pos;
+    end else begin
+        if(ready) begin
+            data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
+            i<=i+4; end
+    end
+end
+
+/*
+always @(posedge clk) begin
+    if(rst) begin
+        j<=8'b0;
+        i<=start_pos;
+    end else begin
+    result[j] <= data[i];
+    result[j+1] <= data[i+1];
+    result[j+2] <= data[i+2];
+    result[j+3] <= data[i+3];
+    j<=j+4;
+    i<=i+4; end
+end
+*/
+
+always begin
+     #5 clk = ~clk;
+end
+
+
+
+initial begin
+    clk = 1;
+    rst=1;
+    valid = 1;
+    FL = {8'h1,8'h0,8'h1,
+          8'h1,8'h0,8'h1,
+          8'h1,8'h0,8'h1};
+    
+    
+    readBMP;
+    
+    rst = 0;
+   
+    #1000000
+    #10;
+    writeBMP;  
+    #10;
+    $stop;
+    
+end
 endmodule

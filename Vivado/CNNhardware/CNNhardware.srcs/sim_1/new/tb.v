@@ -24,7 +24,10 @@ Conv2D Conv(
 );
 
 
-`define read_fileName "C:\\git\\CNNhardware\\Vivado\\CNNhardware\\lena.bmp"
+
+
+
+`define read_fileName "C:\\Users\\marzh\\Desktop\\CNNhardware\\Vivado\\cnnCopy\\lena512.bmp"
  localparam ARRAY_LEN =11078; //500*1024;
  
  reg[7:0] data[0: ARRAY_LEN];
@@ -61,9 +64,9 @@ task readBMP;
                  $display("width is not suitable");
                  $finish;
              end
- //            for(i = start_pos; i<size;i = i+1)begin
- //                $display("%h", data[i]);
- //            end
+           //for(i = start_pos; i<size;i = i+1)begin
+                 //$display("%h", data[i]);
+            //end
         end
      end
  endtask
@@ -76,7 +79,7 @@ integer i, j;
  reg[7:0] result[0:RESULT_ARRAY_LEN - 1];
 //Image Write Start
  
- `define write_filename "C:\\git\\CNNhardware\\Vivado\\CNNhardware\\Result.bmp"
+ `define write_filename "C:\\Users\\marzh\\Desktop\\CNNhardware\\Vivado\\cnnCopy\\Result.bmp"
  
 task writeBMP;
 integer fileID, k;
@@ -129,17 +132,19 @@ always @(ready_data_in) begin
     i<=i+4; 
 end
 */
-
+initial
+begin
+       j<=8'b0;
+       end
 
 always @(posedge clk) begin
-    if(rst) begin
-        j<=8'b0;
-    end else begin
+    //if(rst) begin
+        //j<=8'b0;
+    //end else begin
         if(out_valid) begin
         result[j] <= regOut[15:8];
         result[j+1] <= regOut[7:0];
         j<=j+2; end
-    end
 end
 
        

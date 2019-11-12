@@ -99,44 +99,50 @@ endtask
  
  //Image Write ends
 
+/*
+event ready_data_in;
+event ready_out;
+
+always @(posedge clk) begin
+    if(rst) begin
+        j<=8'b0;
+    end else if(out_valid) begin
+        ->ready_out;
+    end
+end
+
+always @(ready_out) begin
+        result[j] <= regOut[15:8];
+        result[j+1] <= regOut[7:0];
+        j<=j+2; 
+end
+
+always @(posedge clk) begin
+    if(rst) begin
+        i<=start_pos;end
+    else if(ready)
+        ->ready_data_in;
+end
+
+always @(ready_data_in) begin
+    data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
+    i<=i+4; 
+end
+*/
+
 
 always @(posedge clk) begin
     if(rst) begin
         j<=8'b0;
     end else begin
         if(out_valid) begin
-            result[j] <= regOut[15:8];
-            result[j+1] <= regOut[7:0];
-            j<=j+2; end
+        result[j] <= regOut[15:8];
+        result[j+1] <= regOut[7:0];
+        j<=j+2; end
     end
 end
 
-
-always @(posedge clk) begin
-    if(rst) begin
-        i<=start_pos;
-    end else begin
-        if(ready) begin
-            data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
-            i<=i+4; end
-    end
-end
-
-/*
-always @(posedge clk) begin
-    if(rst) begin
-        j<=8'b0;
-        i<=start_pos;
-    end else begin
-    result[j] <= data[i];
-    result[j+1] <= data[i+1];
-    result[j+2] <= data[i+2];
-    result[j+3] <= data[i+3];
-    j<=j+4;
-    i<=i+4; end
-end
-*/
-
+       
 always begin
      #5 clk = ~clk;
 end
@@ -155,8 +161,14 @@ initial begin
     readBMP;
     
     rst = 0;
-   
-    #1000000
+    
+    for(i = start_pos; i < size; i = i+4)begin
+        wait(ready);             
+        data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
+    end
+    
+    
+    #1000000;
     #10;
     writeBMP;  
     #10;

@@ -40,7 +40,7 @@ wire [23:0] rd_data_2;
 wire [23:0] rd_data_3;
 reg [1:0] k;
 wire rd_en;
-wire rd_addr;
+wire [6:0] rd_addr;
 wire output_valid;
 wire [15:0] regOut;
 wire full_LB_1;
@@ -60,28 +60,33 @@ localparam IDLE = 2'b00,
 
 initial begin
     iter = 0;
+    state <= IDLE;
 end
 
 always @(posedge clk) begin
     case(state)
     IDLE:begin
         data_in_en <= 1;
+        state <= WRITE_ALL;
     end
     WRITE_ALL: begin
         if(!full_LB_1) begin
             wr_en_1 <= 1;
             wr_en_2 <= 0;
             wr_en_3 <= 0;
+            state <= WRITE_ALL; 
         end else if(!full_LB_2) begin
             wr_en_1 <= 0;
             wr_en_2 <= 1;
             wr_en_3 <= 0;
+            state <= WRITE_ALL;
         end else if(!full_LB_3) begin
             wr_en_1 <= 0;
             wr_en_2 <= 0;
-            wr_en_3 <= 1;
-        end else
-            state <= WAIT;
+            wr_en_3 <= 1; end
+        else begin
+            wr_en_3 <= 0;
+            state <= WAIT; end     
     end
     WAIT:begin
         out_valid <=0; 
@@ -165,7 +170,7 @@ LB LB2(
 LB LB3(
 .clk(clk),
 .rst(rst),
-.wr_en(wr_en_2),
+.wr_en(wr_en_3),
 .wr_data(data),
 .rd_en(rd_en),
 .rd_addr(rd_addr),

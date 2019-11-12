@@ -35,7 +35,7 @@ always @(posedge clk)
 begin
 	case (state)
 	IDLE:begin
-        ready <= 1;
+        ready <= 0;
 		if(data_valid) begin
          ready <= 0;
 		 rd_addr<=0;
@@ -49,15 +49,15 @@ begin
 	WAIT:begin
 		if(data_valid) begin
 		   rd_en<=0;
-		   if(k%3==0) begin
+		   if(k==0) begin
 		    regA <= LB1;
 			regB <= LB2;
 			regC <= LB3; end
-		   else if(k%3==1) begin
+		   else if(k==1) begin
 			regA <= LB2;
 			regB <= LB3;
 			regC <= LB1; end
-		   else if(k%3==2) begin
+		   else if(k==2) begin
 			regA <= LB3;
             regB <= LB1;
 			regC <= LB2; end

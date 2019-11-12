@@ -24,13 +24,14 @@ initial begin
     state<=IDLE;   
     wr_addr <= 0;
     full <= 0;
+    data_valid <=0;
 end
 
 always @(posedge clk)
 begin
 	case (state)
 	IDLE:begin
-		data_valid <=0;
+		
 		if(wr_en)
 			state <= WRITE;
 		else if(rd_en)
@@ -44,6 +45,7 @@ begin
 	    if (wr_addr==96) begin
 	       full <= 1;
 	       wr_addr <=0;
+	       data_valid <=1;
 	    end else begin
 	       wr_addr<=wr_addr+4;
 		end
@@ -53,7 +55,7 @@ begin
 		rd_data[7:0] <= mem[rd_addr];
 		rd_data[15:8] <= mem[rd_addr+1];
 		rd_data[23:16] <= mem[rd_addr+2];
-		data_valid <=1;
+		
 		full <= 0;
 		state<=IDLE;
 		end

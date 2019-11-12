@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Tue Nov 12 04:16:05 2019
+# Process ID: 15012
+# Current directory: C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.runs/synth_1
+# Command line: vivado.exe -log Conv.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Conv.tcl
+# Log file: C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.runs/synth_1/Conv.vds
+# Journal file: C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source Conv.tcl -notrace

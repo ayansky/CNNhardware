@@ -1,6 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../../../Conv.v" \
+"../../../../CNNhardware.srcs/sources_1/new/Conv2D.v" \
 "../../../../../../LB.v" \
 "../../../../../../LB_cl.v" \
 "../../../../CNNhardware.srcs/sim_1/new/tb.v" \

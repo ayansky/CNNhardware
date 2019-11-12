@@ -1,9 +1,8 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/git/CNNhardware/Conv.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module Conv
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sources_1/new/Conv2D.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Conv2D
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/git/CNNhardware/LB.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module LB
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/git/CNNhardware/LB_cl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module LB_cl
-WARNING: [VRFC 10-756] identifier IDLE is used before its declaration [C:/git/CNNhardware/LB_cl.v:25]
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/tb.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module tb

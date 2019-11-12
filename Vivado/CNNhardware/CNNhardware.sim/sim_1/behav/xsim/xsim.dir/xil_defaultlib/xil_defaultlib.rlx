@@ -3,7 +3,10 @@
 Jun 14 2018
 20:41:02
 C:/git/CNNhardware/Conv.v,1572888299,verilog,,C:/git/CNNhardware/LB.v,,Conv,,,,,,,,
-C:/git/CNNhardware/LB.v,1572887997,verilog,,C:/git/CNNhardware/LB_cl.v,,LB,,,,,,,,
-C:/git/CNNhardware/LB_cl.v,1572891340,verilog,,C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/tb.v,,LB_cl,,,,,,,,
+C:/git/CNNhardware/LB.v,1573516308,verilog,,C:/git/CNNhardware/LB_cl.v,,LB,,,,,,,,
+C:/git/CNNhardware/LB_cl.v,1573517610,verilog,,C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/tb.v,,LB_cl,,,,,,,,
 C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.sim/sim_1/behav/xsim/glbl.v,1529022455,verilog,,,,glbl,,,,,,,,
-C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/tb.v,1572889584,verilog,,,,tb,,,,,,,,
+C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/image.v,1573202341,verilog,,,,image,,,,,,,,
+C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/tb.v,1573533435,verilog,,,,tb,,,,,,,,
+C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sources_1/new/Conv2D.v,1573519074,verilog,,C:/git/CNNhardware/LB.v,,Conv2D,,,,,,,,
+C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sources_1/new/imMem.v,1573202169,verilog,,C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.srcs/sim_1/new/image.v,,imMem,,,,,,,,

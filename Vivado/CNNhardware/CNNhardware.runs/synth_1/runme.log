@@ -1,0 +1,557 @@
+
+*** Running vivado
+    with args -log Conv.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Conv.tcl
+
+
+****** Vivado v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source Conv.tcl -notrace
+Command: synth_design -top Conv -part xczu7ev-ffvc1156-2-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 24904 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 409.609 ; gain = 96.801
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Conv' [C:/git/CNNhardware/Conv.v:1]
+INFO: [Synth 8-6157] synthesizing module 'LB' [C:/git/CNNhardware/LB.v:3]
+	Parameter IDLE bound to: 2'b00 
+	Parameter READ bound to: 2'b10 
+	Parameter WRITE bound to: 2'b01 
+INFO: [Synth 8-155] case statement is not full and has no default [C:/git/CNNhardware/LB.v:30]
+WARNING: [Synth 8-4767] Trying to implement RAM 'mem_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM "mem_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'LB' (1#1) [C:/git/CNNhardware/LB.v:3]
+WARNING: [Synth 8-689] width (10) of port connection 'rd_addr' does not match port width (7) of module 'LB' [C:/git/CNNhardware/Conv.v:116]
+WARNING: [Synth 8-350] instance 'LB1' of module 'LB' requires 9 connections, but only 8 given [C:/git/CNNhardware/Conv.v:110]
+WARNING: [Synth 8-689] width (10) of port connection 'rd_addr' does not match port width (7) of module 'LB' [C:/git/CNNhardware/Conv.v:127]
+WARNING: [Synth 8-350] instance 'LB2' of module 'LB' requires 9 connections, but only 8 given [C:/git/CNNhardware/Conv.v:121]
+WARNING: [Synth 8-689] width (10) of port connection 'rd_addr' does not match port width (7) of module 'LB' [C:/git/CNNhardware/Conv.v:138]
+WARNING: [Synth 8-350] instance 'LB3' of module 'LB' requires 9 connections, but only 8 given [C:/git/CNNhardware/Conv.v:132]
+INFO: [Synth 8-6157] synthesizing module 'LB_cl' [C:/git/CNNhardware/LB_cl.v:1]
+	Parameter IDLE bound to: 2'b00 
+	Parameter READ bound to: 2'b01 
+	Parameter WAIT bound to: 2'b10 
+	Parameter MAC bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'LB_cl' (2#1) [C:/git/CNNhardware/LB_cl.v:1]
+WARNING: [Synth 8-689] width (10) of port connection 'rd_addr' does not match port width (7) of module 'LB_cl' [C:/git/CNNhardware/Conv.v:154]
+WARNING: [Synth 8-6014] Unused sequential element counter_reg was removed.  [C:/git/CNNhardware/Conv.v:40]
+WARNING: [Synth 8-3848] Net data_valid2 in module/entity Conv does not have driver. [C:/git/CNNhardware/Conv.v:13]
+WARNING: [Synth 8-3848] Net data_valid3 in module/entity Conv does not have driver. [C:/git/CNNhardware/Conv.v:14]
+WARNING: [Synth 8-3848] Net k in module/entity Conv does not have driver. [C:/git/CNNhardware/Conv.v:24]
+INFO: [Synth 8-6155] done synthesizing module 'Conv' (3#1) [C:/git/CNNhardware/Conv.v:1]
+WARNING: [Synth 8-3331] design LB_cl has unconnected port rst
+WARNING: [Synth 8-3331] design LB has unconnected port rst
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 474.996 ; gain = 162.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 474.996 ; gain = 162.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvc1156-2-e
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 474.996 ; gain = 162.188
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'LB'
+INFO: [Synth 8-5546] ROM "full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "mem" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "data_valid" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "ready" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element regA_reg was removed.  [C:/git/CNNhardware/LB_cl.v:53]
+WARNING: [Synth 8-6014] Unused sequential element regB_reg was removed.  [C:/git/CNNhardware/LB_cl.v:54]
+WARNING: [Synth 8-6014] Unused sequential element regC_reg was removed.  [C:/git/CNNhardware/LB_cl.v:55]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+WARNING: [Synth 8-6014] Unused sequential element  was removed.  [C:/git/CNNhardware/LB_cl.v:70]
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'LB_cl'
+INFO: [Synth 8-5544] ROM "wr_en1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                   WRITE |                              010 |                               01
+                    READ |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'LB'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                             0001 |                               00
+                    READ |                             0010 |                               01
+                    WAIT |                             0100 |                               10
+                     MAC |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'LB_cl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 705.934 ; gain = 393.125
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      7 Bit       Adders := 4     
++---Registers : 
+	               24 Bit    Registers := 6     
+	                8 Bit    Registers := 306   
+	                7 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   2 Input     24 Bit        Muxes := 6     
+	   4 Input      8 Bit        Muxes := 174   
+	   2 Input      8 Bit        Muxes := 288   
+	   4 Input      7 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   3 Input      3 Bit        Muxes := 3     
+	   2 Input      3 Bit        Muxes := 3     
+	   4 Input      2 Bit        Muxes := 25    
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 298   
+	   3 Input      1 Bit        Muxes := 9     
+	   5 Input      1 Bit        Muxes := 223   
+	   4 Input      1 Bit        Muxes := 85    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module Conv 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 9     
+Module LB 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      7 Bit       Adders := 1     
++---Registers : 
+	               24 Bit    Registers := 1     
+	                8 Bit    Registers := 100   
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   4 Input      8 Bit        Muxes := 58    
+	   2 Input      8 Bit        Muxes := 96    
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 8     
+	   2 Input      1 Bit        Muxes := 96    
+	   3 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 74    
+	   4 Input      1 Bit        Muxes := 26    
+Module LB_cl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      7 Bit       Adders := 1     
++---Registers : 
+	               24 Bit    Registers := 3     
+	                8 Bit    Registers := 6     
+	                7 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     24 Bit        Muxes := 6     
+	   4 Input      7 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+WARNING: [Synth 8-6014] Unused sequential element LB1/full_reg was removed.  [C:/git/CNNhardware/LB.v:44]
+WARNING: [Synth 8-6014] Unused sequential element LB2/full_reg was removed.  [C:/git/CNNhardware/LB.v:44]
+WARNING: [Synth 8-6014] Unused sequential element LB3/full_reg was removed.  [C:/git/CNNhardware/LB.v:44]
+INFO: [Synth 8-5544] ROM "LB1/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB1/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB1/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "LB2/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB2/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB2/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "LB3/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB3/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "LB3/" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "wr_en1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wr_en2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "LB1/full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3936] Found unconnected internal register 'regB_reg' and it is trimmed from '24' to '8' bits. [C:/git/CNNhardware/LB_cl.v:54]
+WARNING: [Synth 8-3936] Found unconnected internal register 'regC_reg' and it is trimmed from '24' to '8' bits. [C:/git/CNNhardware/LB_cl.v:55]
+WARNING: [Synth 8-3936] Found unconnected internal register 'regA_reg' and it is trimmed from '24' to '8' bits. [C:/git/CNNhardware/LB_cl.v:53]
+INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB1/full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB2/full" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "LB3/full" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3331] design LB_cl has unconnected port rst
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (wr_en1_reg)
+INFO: [Synth 8-3886] merging instance 'wr_en2_reg' (FDRE) to 'wr_en3_reg'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (wr_en3_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (data_valid_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (LBCL/\rd_addr_reg[0] )
+WARNING: [Synth 8-3332] Sequential element (LB1/data_valid_reg) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[6]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[5]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[4]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[3]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[2]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[1]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB1/wr_addr_reg[0]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/data_valid_reg) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[6]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[5]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[4]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[3]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[2]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[1]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB2/wr_addr_reg[0]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/data_valid_reg) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[6]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[5]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[4]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[3]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[2]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[1]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (LB3/wr_addr_reg[0]) is unused and will be removed from module Conv.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[6]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[5]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[4]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[3]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[2]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[1]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (rd_addr_reg[0]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[2]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[1]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[0]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[7]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[6]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[5]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[4]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[3]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[2]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[1]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regC_reg[0]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[2]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[1]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[0]__0) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[2]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[1]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[0]__1) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[7]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[6]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[5]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[4]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[3]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[2]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[1]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regB_reg[0]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[2]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[1]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[0]__2) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[2]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[1]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[0]__3) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[7]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[6]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[5]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[4]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[3]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[2]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[1]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (regA_reg[0]) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[7]__4) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[6]__4) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[5]__4) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[4]__4) is unused and will be removed from module LB_cl.
+WARNING: [Synth 8-3332] Sequential element (A[3]__4) is unused and will be removed from module LB_cl.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT2 |     6|
+|3     |LUT3 |     4|
+|4     |LUT4 |     3|
+|5     |FDRE |    17|
+|6     |IBUF |     1|
+|7     |OBUF |     1|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |    33|
+|2     |  LB1    |LB     |     5|
+|3     |  LB2    |LB_0   |     5|
+|4     |  LB3    |LB_1   |     5|
+|5     |  LBCL   |LB_cl  |    15|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2625 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1513.855 ; gain = 1201.047
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+117 Infos, 130 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1513.855 ; gain = 1213.676
+WARNING: [Constraints 18-5210] No constraint will be written out.
+INFO: [Common 17-1381] The checkpoint 'C:/git/CNNhardware/Vivado/CNNhardware/CNNhardware.runs/synth_1/Conv.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Conv_utilization_synth.rpt -pb Conv_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.161 . Memory (MB): peak = 1513.855 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 12 04:16:41 2019...

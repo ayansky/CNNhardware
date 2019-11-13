@@ -41,6 +41,9 @@ wire [23:0] rd_data_3;
 reg [1:0] k;
 wire rd_en;
 wire [6:0] rd_addr;
+wire [6:0] wr_addr1;
+wire [6:0] wr_addr2;
+wire [6:0] wr_addr3;
 wire output_valid;
 wire [15:0] regOut;
 wire full_LB_1;
@@ -53,11 +56,10 @@ integer iter;
 reg [2:0] state;
 wire ready;
 
-localparam IDLE = 2'b00,
-		   WRITE_ALL = 2'b10,
-		   WAIT =2'b01,
-		   REPLACE = 2'b11;
-
+localparam IDLE = 3'b000,
+		   WRITE_ALL = 3'b010,
+		   WAIT =3'b001,
+		   REPLACE = 3'b011;
 initial begin
     iter = 0;
     state <= IDLE;
@@ -66,33 +68,60 @@ end
 always @(posedge clk) begin
     case(state)
     IDLE:begin
-        data_in_en <= 1;
+        data_in_en <= 0;
+        all_data_valid <= 0;
         state <= WRITE_ALL;
     end
     WRITE_ALL: begin
-        if(!full_LB_1) begin
+            if(wr_addr1==96 | wr_addr2==96 | wr_addr3==96)
+            begin 
+                 if(wr_addr1==96)
+                    wr_en_2 <= 1;
+                 if(wr_addr2==96)
+                  wr_en_3 <= 1;
+               // if(wr_addr3==96)
+                   //wr_en_1 <= 1;
+                data_in_en <= 0;
+                state <=WRITE_ALL;
+            end
+        else if(!full_LB_1) begin
             wr_en_1 <= 1;
             wr_en_2 <= 0;
             wr_en_3 <= 0;
-            state <= WRITE_ALL; 
-        end else if(!full_LB_2) begin
-            wr_en_1 <= 0;
-            wr_en_2 <= 1;
-            wr_en_3 <= 0;
-            state <= WRITE_ALL;
+            data_in_en <= 1;
+            state <=WRITE_ALL;
+        end
+        else if(!full_LB_2) begin
+               wr_en_1 <= 0;
+               wr_en_2 <= 1;
+               wr_en_3 <= 0;
+               data_in_en <= 1;
+               state <=WRITE_ALL;
         end else if(!full_LB_3) begin
             wr_en_1 <= 0;
             wr_en_2 <= 0;
-            wr_en_3 <= 1; end
-        else begin
-            wr_en_3 <= 0;
-            state <= WAIT; end     
+            wr_en_3 <= 1; 
+            data_in_en <= 1;
+            state <=WRITE_ALL;
+            end    
+            //state <= WRITE_OK;
+                  else begin
+                    data_in_en <= 0;
+                    wr_en_3 <= 0;
+                    state <= WAIT; end
+            
     end
     WAIT:begin
         out_valid <=0; 
         k <= iter%3;
         data_in_en <=0;
-        if (data_valid_1 & data_valid_2 & data_valid_3) begin
+        wr_en_1 <= 0;
+        wr_en_2 <= 0;
+         wr_en_3 <= 0;
+          if (data_valid_1 & data_valid_2 & data_valid_3 & rd_en) begin
+                    all_data_valid <=0;
+                    end
+        else if (data_valid_1 & data_valid_2 & data_valid_3) begin
             all_data_valid <=1;
             if (output_valid) begin
                 out_valid <=1;
@@ -152,7 +181,8 @@ LB LB1(
 .rd_addr(rd_addr),
 .rd_data(rd_data_1),
 .data_valid(data_valid_1),
-.full(full_LB_1)
+.full(full_LB_1),
+.wr_addr(wr_addr1)
 );
 
 LB LB2(
@@ -164,7 +194,8 @@ LB LB2(
 .rd_addr(rd_addr),
 .rd_data(rd_data_2),
 .data_valid(data_valid_2),
-.full(full_LB_2)
+.full(full_LB_2),
+.wr_addr(wr_addr2)
 );
 
 LB LB3(
@@ -176,7 +207,8 @@ LB LB3(
 .rd_addr(rd_addr),
 .rd_data(rd_data_3),
 .data_valid(data_valid_3),
-.full(full_LB_3)
+.full(full_LB_3),
+.wr_addr(wr_addr3)
 );
 
 

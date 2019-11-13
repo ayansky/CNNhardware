@@ -9,16 +9,18 @@ input wire rd_en,
 input wire [6:0] rd_addr,
 output reg [23:0] rd_data,
 output reg data_valid,
-output reg full
+output reg full,
+output reg [6:0] wr_addr
 );
 
 reg [7:0] mem [99:0];
 reg [1:0] state;
-reg [6:0] wr_addr;
+
 
 localparam IDLE = 2'b00,
 		   READ = 2'b10,
-		   WRITE =2'b01;
+		   WRITE =2'b01,
+		   WAIT = 2'b11;
 		   
 initial begin
     state<=IDLE;   
@@ -31,12 +33,17 @@ always @(posedge clk)
 begin
 	case (state)
 	IDLE:begin
-		
 		if(wr_en)
+		begin
+			data_valid <=0;
 			state <= WRITE;
+        end
 		else if(rd_en)
-			state <= READ;
+		begin
+		data_valid <=0;
+        state <= READ;
 		end
+    end
 	WRITE:begin
 	    mem[wr_addr] <= wr_data[7:0];
 	    mem[wr_addr+1] <= wr_data[15:8];
@@ -46,16 +53,20 @@ begin
 	       full <= 1;
 	       wr_addr <=0;
 	       data_valid <=1;
+	       state <= WAIT;
 	    end else begin
 	       wr_addr<=wr_addr+4;
+	       //state<=IDLE;
 		end
-		state<=IDLE;
 		end
+    WAIT: begin
+        state<=IDLE;
+    end
 	READ:begin
 		rd_data[7:0] <= mem[rd_addr];
 		rd_data[15:8] <= mem[rd_addr+1];
 		rd_data[23:16] <= mem[rd_addr+2];
-		
+		data_valid <=1;
 		full <= 0;
 		state<=IDLE;
 		end

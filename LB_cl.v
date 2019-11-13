@@ -29,6 +29,7 @@ initial begin
 	rd_en<=0;
     state<=IDLE;
     regOut<=0;
+      rd_addr<=0;
 end
 
 always @(posedge clk)
@@ -38,17 +39,18 @@ begin
         ready <= 0;
 		if(data_valid) begin
          ready <= 0;
-		 rd_addr<=0;
 		 state<=READ;
+		  rd_en<=1;
 		 output_valid<=0; end
 	   end
 	READ:begin
-			rd_en<=1;
+	         output_valid<=0;
 			state<=WAIT;
+			  rd_en<=1;
 		end
 	WAIT:begin
+	       rd_en<=0;
 		if(data_valid) begin
-		   rd_en<=0;
 		   if(k==0) begin
 		    regA <= LB1;
 			regB <= LB2;
@@ -60,20 +62,20 @@ begin
 		   else if(k==2) begin
 			regA <= LB3;
             regB <= LB1;
-			regC <= LB2; end
-					
-		   rd_addr<=rd_addr+1;
+			regC <= LB2; end			
 		   state<=MAC;
 		 end
 		end
 	MAC:begin
+	rd_addr<=rd_addr+1;
       regOut[15:0]<=regA[23:16]*FL[23:16] + regA[15:8]*FL[15:8] + regA[7:0]*FL[7:0]+regB[23:16]*FL[47:40]+  regB[15:8]*FL[39:32] + regB[7:0]*FL[31:24]+ regC[23:16]*FL[71:64] +regC[15:8]*FL[63:56] + regC[7:0]*FL[55:48] ;
       output_valid<=1;
       if(rd_addr==97) begin
         ready <= 1;
+        rd_addr<=0;
 		state<=IDLE; end
 	  else
-		state<=READ;
+		state<=IDLE;
 	 end
 	endcase
 end

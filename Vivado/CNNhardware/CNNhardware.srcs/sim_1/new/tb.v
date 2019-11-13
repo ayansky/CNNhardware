@@ -64,8 +64,8 @@ task readBMP;
                  $display("width is not suitable");
                  $finish;
              end
-           //for(i = start_pos; i<size;i = i+1)begin
-                 //$display("%h", data[i]);
+          // for(i = start_pos; i<size;i = i+1)begin
+                // $display("%h", data[i]);
             //end
         end
      end
@@ -86,18 +86,12 @@ integer fileID, k;
  begin
      fileID = $fopen(`write_filename, "wb");
      
-     for(k = 0; k < 28; k = k+1)begin
+     for(k = 0; k < start_pos; k = k+1)begin
          $fwrite(fileID, "%c", data[k]);
      end
     
-    $fwrite(fileID, "%c", 8'h16);
-    $fwrite(fileID, "%c", 8'h00);
-    
-     for(k = 30; k < start_pos; k = k+1)begin
-       $fwrite(fileID, "%c", data[k]);
-     end   
      
-     for(k = start_pos; k<19208; k = k+1)begin
+     for(k = start_pos; k<20286; k = k+1)begin
          $fwrite(fileID, "%c", result[k-start_pos]);
      end
      
@@ -172,12 +166,21 @@ initial begin
     readBMP;
     
     rst = 0;
+    i = start_pos;
+     while(i< size)begin
+       @(posedge clk);
+          if(ready)         
+          begin    
+           data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
+           i = i+4;
+           end
+       end
     
-    for(i = start_pos; i < size; i = i+4)begin
+    /*for(i = start_pos; i < size; i = i+4)begin
         @(posedge clk);
-        wait(ready);             
+        wait(ready)             
         data_in <= {data[i+3],data[i+2],data[i+1],data[i]};
-    end
+    end*/
     
     
     #1000000;

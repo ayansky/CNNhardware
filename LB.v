@@ -33,14 +33,13 @@ always @(posedge clk)
 begin
 	case (state)
 	IDLE:begin
+	   data_valid <=0;
 		if(wr_en)
 		begin
-			data_valid <=0;
 			state <= WRITE;
         end
 		else if(rd_en)
 		begin
-		data_valid <=0;
         state <= READ;
 		end
     end
@@ -60,6 +59,7 @@ begin
 		end
 		end
     WAIT: begin
+         data_valid <=0;
         state<=IDLE;
     end
 	READ:begin

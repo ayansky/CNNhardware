@@ -37,16 +37,16 @@ begin
 	case (state)
 	IDLE:begin
         ready <= 0;
+        output_valid<=0;
 		if(data_valid) begin
          ready <= 0;
 		 state<=READ;
-		  rd_en<=1;
 		 output_valid<=0; end
 	   end
 	READ:begin
 	         output_valid<=0;
+	         rd_en<=1;
 			state<=WAIT;
-			  rd_en<=1;
 		end
 	WAIT:begin
 	       rd_en<=0;
@@ -75,7 +75,7 @@ begin
         rd_addr<=0;
 		state<=IDLE; end
 	  else
-		state<=IDLE;
+		state<=READ;
 	 end
 	endcase
 end

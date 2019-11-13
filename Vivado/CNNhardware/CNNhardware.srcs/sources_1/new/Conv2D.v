@@ -59,7 +59,8 @@ wire ready;
 localparam IDLE = 3'b000,
 		   WRITE_ALL = 3'b010,
 		   WAIT =3'b001,
-		   REPLACE = 3'b011;
+		   REPLACE = 3'b011,
+		   READY =3'b100;
 initial begin
     iter = 0;
     state <= IDLE;
@@ -108,9 +109,11 @@ always @(posedge clk) begin
                   else begin
                     data_in_en <= 0;
                     wr_en_3 <= 0;
+                    all_data_valid <=1;
                     state <= WAIT; end
             
     end
+    
     WAIT:begin
         out_valid <=0; 
         k <= iter%3;
@@ -118,51 +121,98 @@ always @(posedge clk) begin
         wr_en_1 <= 0;
         wr_en_2 <= 0;
          wr_en_3 <= 0;
-          if (data_valid_1 & data_valid_2 & data_valid_3 & rd_en) begin
+         if (data_valid_1 & data_valid_2 & data_valid_3) begin
+         all_data_valid <=1;
+         end
+         else
+         all_data_valid <=0;
+         if (output_valid) begin
+             all_data_valid <=0;
+             out_valid <=1;
+             out_data <= regOut; end
+         //else
+            //all_data_valid <=1;
+         if (ready) begin
+             out_valid <=0;
+             if(iter<100)
+             begin
+             state <= REPLACE;
+             iter <= iter +1;
+             end
+             end
+         /* if (data_valid_1 & data_valid_2 & data_valid_3 & rd_en) begin
                     all_data_valid <=0;
                     end
         else if (data_valid_1 & data_valid_2 & data_valid_3) begin
-            all_data_valid <=1;
             if (output_valid) begin
+            all_data_valid <=0;
                 out_valid <=1;
                 out_data <= regOut; end
+            else
+             all_data_valid <=1;
             if (ready) begin
                 data_in_en <=1;
                 state <= REPLACE;
                 iter <= iter +1;
                 end
         end else begin
-            all_data_valid <=0; end
+            all_data_valid <=0; end*/
     end
     REPLACE: begin 
-        if(iter%3==0) begin
+        if(wr_addr1==96 | wr_addr2==96 | wr_addr3==96)
+        begin 
+            state<= WAIT;
+            data_in_en <=0;
+            all_data_valid <=1;
+        end
+        else if(iter%3==0) begin
             if(!full_LB_3) begin
+                     state<= READY;
                     wr_en_1 <= 0;
                     wr_en_2 <= 0;
                     wr_en_3 <= 1;
             end
-            else
-             state<= WAIT;
+            else 
+            begin
+            state<= WAIT;
+            data_in_en <=0;
+            all_data_valid <=1;
+            end
         end
         else if(iter%3==1) begin
             if(!full_LB_1) begin
+             state<= READY;
                     wr_en_1 <= 1;
                     wr_en_2 <= 0;
                     wr_en_3 <= 0;
             end
-            else
-              state<= WAIT;
+            else 
+            begin
+            state<= WAIT;
+            data_in_en <=0;
+            all_data_valid <=1;
+            end
         end
         else if(iter%3==2) begin
             if(!full_LB_1) begin
+             state<= READY;
                     wr_en_1 <= 0;
                     wr_en_2 <= 1;
                     wr_en_3 <= 0;
             end
             else 
+                begin
                 state<= WAIT;
-        end       
+                data_in_en <=0;
+                all_data_valid <=1;
+                end
+        end  
+             
     
+    end
+    READY:begin
+     data_in_en <=1;
+     state<= REPLACE;
     end
     endcase
 end

@@ -87,8 +87,23 @@ integer fileID, k;
      fileID = $fopen(`write_filename, "wb");
      
      for(k = 0; k < start_pos; k = k+1)begin
+         if(k==26)
+         $fwrite(fileID, "%c", 8'h10);
+         else if(k==27)
+         $fwrite(fileID, "%c", 8'h00);
+         else
          $fwrite(fileID, "%c", data[k]);
      end
+     /*for(k = 0; k < 28; k = k+1)begin
+              $fwrite(fileID, "%c", data[k]);
+          end
+         
+         $fwrite(fileID, "%c", 8'h10);
+         $fwrite(fileID, "%c", 8'h00);
+         
+         for(k = 30; k < start_pos; k = k+1)begin
+                  $fwrite(fileID, "%c", data[k]);
+     end*/
     
      
      for(k = start_pos; k<20286; k = k+1)begin
@@ -153,7 +168,7 @@ always begin
 end
 
 
-
+integer l;
 initial begin
     clk = 1;
     rst=1;
@@ -175,6 +190,7 @@ initial begin
            i = i+4;
            end
        end
+        $display("ALL data was sent" );
     
     /*for(i = start_pos; i < size; i = i+4)begin
         @(posedge clk);
@@ -185,6 +201,9 @@ initial begin
     
     #1000000;
     #10;
+     for(l = 0; l < 20; l = l+1)begin
+            $display("Result is ", result[l]);
+            end
     writeBMP;  
     #10;
     $stop;

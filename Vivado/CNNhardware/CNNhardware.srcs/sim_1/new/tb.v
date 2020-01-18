@@ -64,7 +64,7 @@ task readBMP;
                  $display("width is not suitable");
                  $finish;
              end
-          // for(i = start_pos; i<size;i = i+1)begin
+          //for(i = start_pos; i<size;i = i+1)begin
                 // $display("%h", data[i]);
             //end
         end
@@ -87,10 +87,23 @@ integer fileID, k;
      fileID = $fopen(`write_filename, "wb");
      
      for(k = 0; k < start_pos; k = k+1)begin
-         if(k==26)
-         $fwrite(fileID, "%c", 8'h10);
-         else if(k==27)
-         $fwrite(fileID, "%c", 8'h00);
+        
+          if(k==2)
+          $fwrite(fileID, "%c",8'hBA); //8'hBA);
+          else if(k==3)
+          $fwrite(fileID, "%c",8'h29); //8'h29);
+          else if(k==18)
+                    $fwrite(fileID, "%c", 8'h62);
+                    else if(k==22)
+                    $fwrite(fileID, "%c", 8'h62);
+         else if(k==34)
+         $fwrite(fileID, "%c", 8'h84);
+         else if(k==35)
+         $fwrite(fileID, "%c", 8'h25);
+         //else if(k==28)
+         //$fwrite(fileID, "%c", 8'h10);
+         //else if(k==29)
+         //$fwrite(fileID, "%c", 8'h00);
          else
          $fwrite(fileID, "%c", data[k]);
      end
@@ -157,9 +170,11 @@ always @(posedge clk) begin
         //j<=8'b0;
     //end else begin
         if(out_valid) begin
-        result[j] <= regOut[15:8];
-        result[j+1] <= regOut[7:0];
-        j<=j+2; end
+        //result[j] <= regOut[15:8];
+        result[j] <= regOut[7:0];
+        //j<=j+2;
+        j<=j+1;
+         end
 end
 
        
@@ -173,9 +188,9 @@ initial begin
     clk = 1;
     rst=1;
     valid = 1;
-    FL = {8'h1,8'h0,8'h1,
-          8'h1,8'h0,8'h1,
-          8'h1,8'h0,8'h1};
+    FL = {8'h0,8'h0,8'h0,
+        8'h0,8'h1,8'h0,
+        8'h0,8'h0,8'h0};
     
     
     readBMP;

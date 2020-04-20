@@ -1,21 +1,23 @@
 // Line buffer, 28 in width each entity represented by 4 bits
-
+//`define sizeLB 100
+`include "include.v"
 module LB(
+
 input wire clk,
 input wire rst,
 input wire wr_en,
-input wire [31:0] wr_data,
+input wire [15:0] wr_data,
 input wire rd_en,
 input wire [6:0] rd_addr,
-output reg [23:0] rd_data,
+output reg [`filterSize*8-1:0] rd_data,
 output reg data_valid,
 output reg full,
 output reg [6:0] wr_addr
 );
 
-reg [7:0] mem [99:0];
+reg [7:0] mem [`sizeLB-1:0];
 reg [1:0] state;
-
+integer r;
 
 localparam IDLE = 2'b00,
 		   READ = 2'b10,
@@ -46,15 +48,14 @@ begin
 	WRITE:begin
 	    mem[wr_addr] <= wr_data[7:0];
 	    mem[wr_addr+1] <= wr_data[15:8];
-	    mem[wr_addr+2] <= wr_data[23:16];
-	    mem[wr_addr+3] <= wr_data[31:24];
-	    if (wr_addr==96) begin
+	    if (wr_addr==`sizeLB-2) begin
+	    $display("LB_full" );
 	       full <= 1;
 	       wr_addr <=0;
 	       data_valid <=1;
 	       state <= WAIT;
 	    end else begin
-	       wr_addr<=wr_addr+4;
+	       wr_addr<=wr_addr+2;
 	       //state<=IDLE;
 		end
 		end
@@ -63,9 +64,9 @@ begin
         state<=IDLE;
     end
 	READ:begin
-		rd_data[7:0] <= mem[rd_addr];
-		rd_data[15:8] <= mem[rd_addr+1];
-		rd_data[23:16] <= mem[rd_addr+2];
+	    for(r=0;r<`filterSize;r=r+1)
+	    rd_data[r*8+:8]<= mem[rd_addr+r];
+		
 		data_valid <=1;
 		full <= 0;
 		state<=IDLE;
